@@ -1,35 +1,59 @@
+import type { Media } from "../../types/media";
 import "./Hero.css";
 
-function Hero() {
+interface HeroProps {
+  movie: Media | null;
+}
+
+function Hero({ movie }: HeroProps) {
+  if (!movie) {
+    return null;
+  }
+
+  const backdropImage = movie.backdrop_path ?? movie.poster_path;
+
   return (
     <section className="hero">
+      {backdropImage && (
+        <img
+          className="hero-background"
+          src={`https://image.tmdb.org/t/p/original${backdropImage}`}
+          alt=""
+        />
+      )}
+
       <div className="hero-overlay" />
 
       <div className="hero-content">
         <span className="hero-n">N</span>
 
-        <h1 className="hero-title">YOU</h1>
+        <h1 className="hero-title">{movie.title ?? movie.name}</h1>
 
-        <div className="hero-meta">
-          <span>Series</span>
-          <span>Thriller</span>
-          <span>2018</span>
-          <span>5 Seasons</span>
-          <span>A</span>
-        </div>
+        <p className="hero-meta">
+          {movie.media_type === "movie" ? "Movie" : "Series"}
 
-        <p className="hero-description">
-          A thrilling story about a man whose obsession leads him down a
-          dangerous path.
+          <span>•</span>
+
+          <span>★ {movie.vote_average.toFixed(1)}</span>
+
+          {(movie.release_date || movie.first_air_date) && (
+            <>
+              <span>•</span>
+              <span>
+                {(movie.release_date ?? movie.first_air_date)?.slice(0, 4)}
+              </span>
+            </>
+          )}
         </p>
+
+        <p className="hero-description">{movie.overview}</p>
 
         <div className="hero-buttons">
           <button className="play-btn">▶ Play</button>
           <button className="info-btn">ⓘ More Info</button>
         </div>
       </div>
-
-      <button className="mute-btn">🔊</button>
+  z
     </section>
   );
 }

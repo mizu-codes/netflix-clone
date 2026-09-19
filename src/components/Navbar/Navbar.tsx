@@ -3,7 +3,7 @@ import "./Navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <h1 className="navbar-logo">NETFLIX</h1>
+      <img className="navbar-logo" src="/images/netflix.svg" alt="Netflix" />
 
       <div className="navbar-links">
         <span className="navbar-home">Home</span>
