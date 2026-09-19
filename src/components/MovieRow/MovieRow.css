@@ -1,0 +1,19 @@
+.movie-row {
+  margin: 35px 4%;
+}
+
+.movie-row h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.movie-list {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.movie-list::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,108 @@
+.hero {
+  position: relative;
+  width: 92%;
+  height: 70vh;
+  margin: 20px auto 0;
+  border-radius: 24px;
+  overflow: hidden;
+  background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.5) 45%,
+      rgba(0, 0, 0, 0.2) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      transparent 50%
+    );
+}
+
+.hero-content {
+  position: absolute;
+  left: 4%;
+  bottom: 10%;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.hero-n {
+  display: block;
+  color: #e50914;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.hero-title {
+  margin: 0 0 20px;
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.9;
+  color: white;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.hero-description {
+  max-width: 550px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.play-btn,
+.info-btn {
+  border: none;
+  padding: 13px 24px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.play-btn {
+  background: white;
+  color: black;
+}
+
+.info-btn {
+  background: rgba(100, 100, 100, 0.8);
+  color: white;
+}
+
+.mute-btn {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  z-index: 2;
+
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+}
