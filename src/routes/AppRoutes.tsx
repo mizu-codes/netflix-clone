@@ -19,7 +19,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/tv-shows" element={<TVShows />} />
-        <Route path="/details/:id" element={<Details />} />
+        <Route path="/details/:mediaType/:id" element={<Details />} />
       </Route>
     </Routes>
   );

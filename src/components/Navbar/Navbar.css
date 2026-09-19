@@ -10,10 +10,9 @@
 }
 
 .navbar-logo {
-  color: #e50914;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -1px;
+  width: 100px;
+  height: auto;
+  display: block;
 }
 
 .navbar-links {

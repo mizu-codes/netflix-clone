@@ -1,0 +1,58 @@
+.movie-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 320px;
+  background: #181818;
+  border-radius: 8px;
+  overflow: hidden;
+
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.preview-video {
+  width: 100%;
+  height: 180px;
+  background: #000;
+}
+
+.preview-video iframe,
+.preview-video img {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-content {
+  padding: 12px;
+}
+
+.preview-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.preview-actions button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #777;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+.preview-content p {
+  margin: 0;
+  color: #bbb;
+}
