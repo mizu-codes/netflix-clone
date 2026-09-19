@@ -1,0 +1,44 @@
+.footer {
+  margin-top: 70px;
+  padding: 50px 6% 30px;
+  background: #111;
+  color: #777;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.footer-socials span {
+  font-size: 1.6rem;
+  color: white;
+  cursor: pointer;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.footer-links div {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer-links span {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-links span:hover {
+  color: white;
+}
+
+.footer-copyright {
+  margin-top: 35px;
+  font-size: 0.85rem;
+}
