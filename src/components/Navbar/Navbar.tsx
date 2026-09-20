@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiSearch, FiBell, FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
+import { notify } from "../../utils/Notify";
 import "./Navbar.css";
 
 const NAV_LINKS = [
@@ -27,8 +28,10 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await logout();
+      notify.success("Signed out successfully");
     } catch (error) {
       console.error("Logout failed:", error);
+      notify.error("Something went wrong while signing out.");
     }
   };
 
