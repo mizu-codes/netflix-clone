@@ -9,8 +9,8 @@ import {
   getTrendingMovies,
   getPopularMovies,
   getPopularTvShows,
-  getTopRatedMovies,
-  getLatestMovies,
+  getNetflixMoviesAndTv,
+  getAsianMoviesAndTv,
   getMediaDetails,
 } from "../services/tmdb";
 
@@ -20,8 +20,8 @@ function Home() {
   const [trendingMovies, setTrendingMovies] = useState<Media[]>([]);
   const [popularMovies, setPopularMovies] = useState<Media[]>([]);
   const [popularTvShows, setPopularTvShows] = useState<Media[]>([]);
-  const [topRatedMovies, setTopRatedMovies] = useState<Media[]>([]);
-  const [latestMovies, setLatestMovies] = useState<Media[]>([]);
+  const [asianMoviesAndTv, setAsianMoviesAndTv] = useState<Media[]>([]);
+  const [netflixMoviesAndTv, setNetflixMoviesAndTv] = useState<Media[]>([]);
   const [featuredMovie, setFeaturedMovie] = useState<Media | null>(null);
   const [featuredDetails, setFeaturedDetails] = useState<MediaDetails | null>(
     null,
@@ -64,17 +64,17 @@ function Home() {
         console.error(error);
       });
 
-    getTopRatedMovies()
+    getAsianMoviesAndTv()
       .then((data) => {
-        setTopRatedMovies(data.results);
+        setAsianMoviesAndTv(data.results);
       })
       .catch((error) => {
         console.error(error);
       });
 
-    getLatestMovies()
+    getNetflixMoviesAndTv()
       .then((data) => {
-        setLatestMovies(data.results);
+        setNetflixMoviesAndTv(data.results);
       })
       .catch((error) => {
         console.error(error);
@@ -86,10 +86,10 @@ function Home() {
       <Navbar />
       <Hero movie={featuredMovie} details={featuredDetails} />
       <MovieRow title="Trending Now" movies={trendingMovies} />
-      <MovieRow title="Popular Movies" movies={popularMovies} />
       <MovieRow title="Popular TV Shows" movies={popularTvShows} />
-      <MovieRow title="Top Rated" movies={topRatedMovies} />
-      <MovieRow title="Latest Releases" movies={latestMovies} />
+      <MovieRow title="Popular Movies" movies={popularMovies} />
+      <MovieRow title="Asian Movies & TV" movies={asianMoviesAndTv} />
+      <MovieRow title="Only on Netflix" movies={netflixMoviesAndTv} />
       <Footer />
     </>
   );

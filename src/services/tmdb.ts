@@ -53,6 +53,31 @@ export async function getPopularTvShows(): Promise<MediaResponse> {
   };
 }
 
+export async function getAsianMoviesAndTv(): Promise<MediaResponse> {
+  const countries = "KR|JP|CN|TH|ID|PH|TW|HK";
+
+  const [movieData, tvData] = await Promise.all([
+    fetchTMDB(
+      `/discover/movie?with_origin_country=${countries}&sort_by=popularity.desc`,
+    ),
+    fetchTMDB(
+      `/discover/tv?with_origin_country=${countries}&sort_by=popularity.desc`,
+    ),
+  ]);
+
+  const movies = addMediaType(movieData.results, "movie");
+  const tvShows = addMediaType(tvData.results, "tv");
+
+  const results = [...movies, ...tvShows].sort(
+    (a, b) => (b.popularity ?? 0) - (a.popularity ?? 0),
+  );
+
+  return {
+    ...movieData,
+    results,
+  };
+}
+
 export async function getTopRatedMovies(): Promise<MediaResponse> {
   const data = await fetchTMDB("/movie/top_rated");
 
@@ -62,12 +87,22 @@ export async function getTopRatedMovies(): Promise<MediaResponse> {
   };
 }
 
-export async function getLatestMovies(): Promise<MediaResponse> {
-  const data = await fetchTMDB("/movie/now_playing");
+export async function getNetflixMoviesAndTv(): Promise<MediaResponse> {
+  const [movieData, tvData] = await Promise.all([
+    fetchTMDB("/discover/movie?with_companies=213&sort_by=popularity.desc"),
+    fetchTMDB("/discover/tv?with_networks=213&sort_by=popularity.desc"),
+  ]);
+
+  const movies = addMediaType(movieData.results, "movie");
+  const tvShows = addMediaType(tvData.results, "tv");
+
+  const results = [...movies, ...tvShows].sort(
+    (a, b) => (b.popularity ?? 0) - (a.popularity ?? 0),
+  );
 
   return {
-    ...data,
-    results: addMediaType(data.results, "movie"),
+    ...movieData,
+    results,
   };
 }
 
