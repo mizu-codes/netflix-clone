@@ -1,14 +1,26 @@
+import type { CSSProperties } from "react";
+
 import type { Media } from "../../types/media";
 import "./MoviePreview.css";
 
 interface MoviePreviewProps {
   movie: Media;
   trailerKey: string | null;
+  style?: CSSProperties;
+  entered?: boolean;
 }
 
-function MoviePreview({ movie, trailerKey }: MoviePreviewProps) {
+function MoviePreview({
+  movie,
+  trailerKey,
+  style,
+  entered = false,
+}: MoviePreviewProps) {
   return (
-    <div className="movie-preview">
+    <div
+      className={`movie-preview${entered ? " movie-preview--visible" : ""}`}
+      style={style}
+    >
       <div className="preview-video">
         {trailerKey ? (
           <iframe
@@ -28,9 +40,15 @@ function MoviePreview({ movie, trailerKey }: MoviePreviewProps) {
         <h3>{movie.title ?? movie.name}</h3>
 
         <div className="preview-actions">
-          <button>▶</button>
-          <button>＋</button>
-          <button>♡</button>
+          <button type="button">▶</button>
+
+          <button type="button" onClick={(event) => event.stopPropagation()}>
+            ＋
+          </button>
+
+          <button type="button" onClick={(event) => event.stopPropagation()}>
+            ♡
+          </button>
         </div>
 
         <p>Rating: {movie.vote_average.toFixed(1)}</p>

@@ -26,7 +26,6 @@ async function fetchTMDB(endpoint: string) {
   return response.json();
 }
 
-
 export async function getTrendingMovies(): Promise<MediaResponse> {
   const data = await fetchTMDB("/trending/movie/week");
 
@@ -78,7 +77,7 @@ export async function getMediaDetails(mediaType: "movie" | "tv", id: string) {
 
 export async function getMediaVideos(
   mediaType: "movie" | "tv",
-  id: string
+  id: string,
 ): Promise<Video[]> {
   const data = await fetchTMDB(`/${mediaType}/${id}/videos`);
 

@@ -36,6 +36,9 @@ export interface MediaDetails {
   release_date?: string;
   first_air_date?: string;
   genres: Genre[];
+  runtime?: number;
+  number_of_seasons?: number;
+  number_of_episodes?: number;
 }
 
 export interface Video {

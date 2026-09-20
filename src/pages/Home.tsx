@@ -11,9 +11,10 @@ import {
   getPopularTvShows,
   getTopRatedMovies,
   getLatestMovies,
+  getMediaDetails,
 } from "../services/tmdb";
 
-import type { Media } from "../types/media";
+import type { Media, MediaDetails } from "../types/media";
 
 function Home() {
   const [trendingMovies, setTrendingMovies] = useState<Media[]>([]);
@@ -22,6 +23,9 @@ function Home() {
   const [topRatedMovies, setTopRatedMovies] = useState<Media[]>([]);
   const [latestMovies, setLatestMovies] = useState<Media[]>([]);
   const [featuredMovie, setFeaturedMovie] = useState<Media | null>(null);
+  const [featuredDetails, setFeaturedDetails] = useState<MediaDetails | null>(
+    null,
+  );
 
   useEffect(() => {
     getTrendingMovies()
@@ -32,6 +36,13 @@ function Home() {
           data.results[Math.floor(Math.random() * data.results.length)];
 
         setFeaturedMovie(randomMovie);
+
+        const details = await getMediaDetails(
+          randomMovie.media_type,
+          String(randomMovie.id),
+        );
+
+        setFeaturedDetails(details);
       })
       .catch((error) => {
         console.error(error);
@@ -73,7 +84,7 @@ function Home() {
   return (
     <>
       <Navbar />
-      <Hero movie={featuredMovie} />
+      <Hero movie={featuredMovie} details={featuredDetails} />
       <MovieRow title="Trending Now" movies={trendingMovies} />
       <MovieRow title="Popular Movies" movies={popularMovies} />
       <MovieRow title="Popular TV Shows" movies={popularTvShows} />

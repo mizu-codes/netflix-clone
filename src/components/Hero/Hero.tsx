@@ -1,16 +1,26 @@
-import type { Media } from "../../types/media";
+import type { Media, MediaDetails } from "../../types/media";
 import "./Hero.css";
 
 interface HeroProps {
   movie: Media | null;
+  details: MediaDetails | null;
 }
 
-function Hero({ movie }: HeroProps) {
+function Hero({ movie, details }: HeroProps) {
   if (!movie) {
     return null;
   }
 
   const backdropImage = movie.backdrop_path ?? movie.poster_path;
+  const year = (movie.release_date ?? movie.first_air_date)?.slice(0, 4);
+  const genres = details?.genres
+    .slice(0, 2)
+    .map((genre) => genre.name)
+    .join(" • ");
+  const runtime = details?.runtime;
+  const runtimeText = runtime
+    ? `${Math.floor(runtime / 60)}h ${runtime % 60}m`
+    : "";
 
   return (
     <section className="hero">
@@ -19,29 +29,37 @@ function Hero({ movie }: HeroProps) {
           className="hero-background"
           src={`https://image.tmdb.org/t/p/original${backdropImage}`}
           alt=""
+          fetchPriority="high"
+          decoding="async"
         />
       )}
 
       <div className="hero-overlay" />
 
       <div className="hero-content">
-        <span className="hero-n">N</span>
-
         <h1 className="hero-title">{movie.title ?? movie.name}</h1>
 
         <p className="hero-meta">
-          {movie.media_type === "movie" ? "Movie" : "Series"}
+          <span>{movie.media_type === "movie" ? "Film" : "Series"}</span>
 
-          <span>•</span>
-
-          <span>★ {movie.vote_average.toFixed(1)}</span>
-
-          {(movie.release_date || movie.first_air_date) && (
+          {genres && (
             <>
-              <span>•</span>
-              <span>
-                {(movie.release_date ?? movie.first_air_date)?.slice(0, 4)}
-              </span>
+              <span className="hero-dot">•</span>
+              <span>{genres}</span>
+            </>
+          )}
+
+          {year && (
+            <>
+              <span className="hero-dot">•</span>
+              <span>{year}</span>
+            </>
+          )}
+
+          {runtimeText && (
+            <>
+              <span className="hero-dot">•</span>
+              <span>{runtimeText}</span>
             </>
           )}
         </p>
@@ -49,11 +67,14 @@ function Hero({ movie }: HeroProps) {
         <p className="hero-description">{movie.overview}</p>
 
         <div className="hero-buttons">
-          <button className="play-btn">▶ Play</button>
-          <button className="info-btn">ⓘ More Info</button>
+          <button type="button" className="play-btn">
+            <span aria-hidden="true">▶</span> Play
+          </button>
+          <button type="button" className="info-btn">
+            <span aria-hidden="true"></span> More Info
+          </button>
         </div>
       </div>
-  z
     </section>
   );
 }
