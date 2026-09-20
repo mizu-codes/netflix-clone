@@ -1,9 +1,10 @@
 import { useState, type SubmitEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FirebaseError } from "firebase/app";
 
 import { useAuth } from "../../hooks/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { notify } from "../../utils/Notify";
+import { getAuthErrorMessage } from "../../utils/Getautherrormessage";
 import "./Signup.css";
 
 function Signup() {
@@ -33,13 +34,14 @@ function Signup() {
     try {
       await signup(email, password);
 
+      notify.success("Account created successfully");
+
       navigate("/");
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        setError(error.message);
-      } else {
-        setError("Something went wrong");
-      }
+      const message = getAuthErrorMessage(error);
+
+      setError(message);
+      notify.error(message);
 
       setLoading(false);
     }
