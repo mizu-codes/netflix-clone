@@ -48,7 +48,7 @@ function Login() {
     <div className="login">
       <img
         className="login-logo"
-        src="/public/images/netfix.svg"
+        src="/images/netfix.svg"
         alt="Netflix"
       />
 

@@ -55,7 +55,7 @@ function Signup() {
     <div className="signup">
       <img
         className="signup-logo"
-        src="/public/images/netfix.svg"
+        src="/images/netfix.svg"
         alt="Netflix"
       />
 

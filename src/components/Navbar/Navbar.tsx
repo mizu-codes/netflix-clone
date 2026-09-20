@@ -60,7 +60,7 @@ function Navbar() {
       <div className="navbar-left">
         <img
           className="navbar-logo"
-          src="/public/images/netfix.svg"
+          src="/images/netfix.svg"
           alt="Netflix"
         />
 
@@ -86,7 +86,7 @@ function Navbar() {
             aria-expanded={profileOpen}
           >
             <img
-              src="/public/images/profile-icon.png"
+              src="/images/profile-icon.png"
               alt="Profile"
               className="profile-image"
             />
