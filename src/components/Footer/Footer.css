@@ -1,44 +1,129 @@
 .footer {
-  margin-top: 70px;
-  padding: 50px 6% 30px;
+  margin-top: 8px;
+  padding: 24px 0 40px;
   background: #111;
-  color: #777;
+  color: #808080;
+}
+
+.footer-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 6%;
 }
 
 .footer-socials {
   display: flex;
-  gap: 25px;
-  margin-bottom: 30px;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 20px;
 }
 
-.footer-socials span {
+.footer-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.6rem;
-  color: white;
+  color: #fff;
   cursor: pointer;
+  transition:
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.footer-social-icon:hover {
+  color: #b3b3b3;
+  transform: translateY(-1px);
 }
 
 .footer-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 70px;
+  row-gap: 24px;
+  margin-bottom: 24px;
 }
 
 .footer-links div {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .footer-links span {
+  font-size: 1rem;
+  color: #808080;
   cursor: pointer;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .footer-links span:hover {
-  color: white;
+  color: #fff;
+  text-decoration: underline;
 }
 
 .footer-copyright {
-  margin-top: 35px;
-  font-size: 0.85rem;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #808080;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .footer {
+    padding: 20px 0 32px;
+  }
+
+  .footer-inner {
+    padding: 0 5%;
+  }
+
+  .footer-links {
+    column-gap: 48px;
+    row-gap: 22px;
+  }
+
+  .footer-links span {
+    white-space: normal;
+  }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .footer {
+    margin-top: 4px;
+    padding: 16px 0 28px;
+  }
+
+  .footer-inner {
+    padding: 0 6%;
+  }
+
+  .footer-socials {
+    gap: 22px;
+    margin-bottom: 18px;
+  }
+
+  .footer-social-icon {
+    font-size: 1.4rem;
+  }
+
+  .footer-links {
+    column-gap: 32px;
+    row-gap: 20px;
+  }
+
+  .footer-links div {
+    min-width: 45%;
+    gap: 14px;
+  }
+
+  .footer-links span {
+    font-size: 0.9rem;
+  }
+
+  .footer-copyright {
+    margin-top: 6px;
+    font-size: 0.82rem;
+  }
 }

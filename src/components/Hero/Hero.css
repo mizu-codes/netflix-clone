@@ -1,10 +1,25 @@
 .hero {
+  --hero-radius: 24px;
+  --hero-pad-x: clamp(20px, 4vw, 60px);
+  --hero-pad-bottom: clamp(36px, 7vh, 76px);
+  --hero-top-offset: 92px;
+  --hero-nav-clear: 48px;
+
   position: relative;
+  display: flex;
+  align-items: flex-end;
+
   width: 92%;
-  height: 70vh;
-  margin: 20px auto 0;
-  border-radius: 24px;
+  max-width: 1800px;
+  margin: var(--hero-top-offset) auto 0;
+  height: auto;
+  min-height: clamp(535px, 80vh, 840px);
+
+  border-radius: var(--hero-radius);
   overflow: hidden;
+  isolation: isolate;
+
+  background-color: #111;
   background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728");
   background-size: cover;
   background-position: center;
@@ -13,15 +28,18 @@
 .hero-background {
   position: absolute;
   inset: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 30%;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
+  pointer-events: none;
   background:
     linear-gradient(
       to right,
@@ -29,73 +47,298 @@
       rgba(0, 0, 0, 0.5) 45%,
       rgba(0, 0, 0, 0.2) 100%
     ),
-    linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.8) 0%,
-      transparent 50%
-    );
+    linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
 }
 
 .hero-content {
-  position: absolute;
-  left: 4%;
-  bottom: 10%;
-  max-width: 600px;
+  position: relative;
   z-index: 2;
-}
-
-.hero-n {
-  display: block;
-  color: #e50914;
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 640px;
+  padding: var(--hero-nav-clear) var(--hero-pad-x) var(--hero-pad-bottom);
 }
 
 .hero-title {
-  margin: 0 0 20px;
-  font-size: clamp(4rem, 8vw, 7rem);
-  line-height: 0.9;
-  color: white;
+  margin: 0 0 18px;
+  color: #fff;
+  font-size: clamp(2rem, 5.2vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .hero-meta {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 18px;
-  font-size: 1.05rem;
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
   font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.hero-dot {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .hero-description {
-  max-width: 550px;
-  margin-bottom: 25px;
-  line-height: 1.5;
+  max-width: 34em;
+  margin: 0 0 24px;
   color: #ddd;
+  font-size: clamp(0.9rem, 1.15vw, 1.1rem);
+  line-height: 1.5;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
 }
 
 .hero-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
 .play-btn,
 .info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border: none;
   padding: 13px 24px;
-  border-radius: 6px;
+  border-radius: 25px;
   font-size: 1rem;
   font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
 }
 
 .play-btn {
-  background: white;
-  color: black;
+  background: #fff;
+  color: #000;
 }
 
 .info-btn {
   background: rgba(100, 100, 100, 0.8);
-  color: white;
+  color: #fff;
+}
+
+.play-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.info-btn:hover {
+  background: rgba(120, 120, 120, 0.85);
+}
+
+.play-btn:focus-visible,
+.info-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ===================== Large desktop ===================== */
+@media (max-width: 1200px) {
+  .hero {
+    --hero-top-offset: 88px;
+    min-height: clamp(540px, 78vh, 780px);
+  }
+
+  .hero-content {
+    max-width: 580px;
+  }
+}
+
+/* ===================== Small desktop / landscape tablet === */
+@media (max-width: 1024px) {
+  .hero {
+    --hero-top-offset: 84px;
+    --hero-radius: 20px;
+    min-height: 620px;
+  }
+
+  .hero-content {
+    max-width: 62%;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3.6rem);
+  }
+
+  .hero-description {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+/* ===================== Tablet ============================ */
+@media (max-width: 900px) {
+  .hero {
+    --hero-top-offset: 80px;
+    --hero-nav-clear: 40px;
+    min-height: 580px;
+  }
+
+  .hero-background {
+    object-position: center 25%;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.6) 55%,
+        rgba(0, 0, 0, 0.35) 100%
+      ),
+      linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 55%);
+  }
+
+  .hero-content {
+    max-width: 78%;
+  }
+
+  .hero-title {
+    margin-bottom: 14px;
+  }
+}
+
+/* ===================== Portrait tablet / large phone ===== */
+@media (max-width: 768px) {
+  .hero {
+    --hero-top-offset: 76px;
+    --hero-radius: 16px;
+    width: 94%;
+    min-height: 540px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-n {
+    margin-bottom: 6px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 8vw, 3rem);
+    margin-bottom: 12px;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .play-btn,
+  .info-btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===================== Phone ============================= */
+@media (max-width: 600px) {
+  .hero {
+    --hero-top-offset: 68px;
+    --hero-nav-clear: 32px;
+    --hero-pad-bottom: 34px;
+    min-height: 500px;
+  }
+
+  .hero-background {
+    object-position: center 22%;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.92) 12%,
+      rgba(0, 0, 0, 0.6) 45%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+  }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 9vw, 2.4rem);
+  }
+
+  .hero-meta {
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    margin-bottom: 18px;
+  }
+}
+
+/* ===================== Small phone ======================= */
+@media (max-width: 400px) {
+  .hero {
+    --hero-top-offset: 60px;
+    --hero-nav-clear: 28px;
+    --hero-radius: 12px;
+    --hero-pad-x: 16px;
+    width: 96%;
+    min-height: 460px;
+  }
+
+  .hero-n {
+    font-size: 20px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+    line-height: 1.08;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .play-btn,
+  .info-btn {
+    flex: 1 1 0;
+    padding: 12px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===================== Short landscape phones ============ */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero {
+    --hero-top-offset: 64px;
+    --hero-nav-clear: 24px;
+    min-height: 360px;
+  }
+
+  .hero-description {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-btn,
+  .info-btn {
+    transition: none;
+  }
 }
