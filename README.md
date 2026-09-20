@@ -7,7 +7,7 @@
 
 [![Live Demo](https://img.shields.io/badge/🌐%20LIVE%20DEMO-E50914?style=for-the-badge)](https://mizu-netflix.vercel.app/)
 
-A Netflix-inspired streaming experience built from scratch with React, TypeScript, Firebase, and the TMDB API.
+A Netflix-inspired streaming experience built from scratch with React and TypeScript.
 
 <h2 align="center">📸 Screenshots</h2>
 
