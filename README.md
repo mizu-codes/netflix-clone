@@ -12,17 +12,17 @@ A Netflix-inspired streaming experience built from scratch with React, TypeScrip
 <h2 align="center">📸 Screenshots</h2>
 
 <p align="center">
-  <img src="./screenshots/auth.png" width="49%" />
-  <img src="./screenshots/hero.png" width="49%" />
+  <img src="./src/screenshots/auth.png" width="49%" />
+  <img src="./src/screenshots/hero.png" width="49%" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/movie-row.png" width="49%" />
-  <img src="./screenshots/preview.png" width="49%" />
+  <img src="./src/screenshots/movie-row.png" width="49%" />
+  <img src="./src/screenshots/preview.png" width="49%" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/trailer.png" width="80%" />
+  <img src="./src/screenshots/trailer.png" width="80%" />
 </p>
 
 ## ✨ Features
