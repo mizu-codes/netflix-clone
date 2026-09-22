@@ -5,8 +5,8 @@ import Signup from "../pages/Signup/Signup";
 import Home from "../pages/Home";
 import Details from "../pages/Details/Details";
 
-import ProtectedRoute from "../components/ProtectedRoute";
-import PublicRoute from "../components/PublicRoute";
+import ProtectedRoute from "./ProtectedRoute";
+import PublicRoute from "./PublicRoute";
 
 function AppRoutes() {
   return (
