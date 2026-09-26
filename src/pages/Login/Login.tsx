@@ -1,4 +1,5 @@
 import { useState, type SubmitEvent } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../hooks/useAuth";
@@ -13,6 +14,7 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -46,11 +48,7 @@ function Login() {
 
   return (
     <div className="login">
-      <img
-        className="login-logo"
-        src="/images/netfix.svg"
-        alt="Netflix"
-      />
+      <img className="login-logo" src="/images/netfix.svg" alt="Netflix" />
 
       <div className="login-form">
         <h1>Sign In</h1>
@@ -63,12 +61,22 @@ function Login() {
             onChange={(event) => setEmail(event.target.value)}
           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
 
           {error && <p className="login-error">{error}</p>}
 
