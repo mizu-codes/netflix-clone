@@ -46,7 +46,7 @@
 
 ## Stack
 
-`React` · `TypeScript` · `CSS`
+`React` · `TypeScript` · `Firebase` · `CSS`
 
 <br/>
 
